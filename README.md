@@ -1,4 +1,5 @@
 # SBMP
+Simple Basic Music Play
 A simple terminal mp3 player.
 
 
