@@ -1,10 +1,10 @@
-OBJS = src/play.c src/play.h src/main.c
+OBJS = src/play.cc
 
-CC = gcc
+CC = g++
 
-COMPILER_FLAGS = -Wall -Wextra -Wpedantic
+COMPILER_FLAGS = -Wall -Wextra -Wpedantic -std=c++17
 
-LINKER_FLAGS = -lSDL2 -lSDL2_mixer -lncurses
+LINKER_FLAGS = -lSDL2 -lSDL2_mixer -lncurses -lpthread -lstdc++fs
 
 OBJ_NAME = sbmp
 
