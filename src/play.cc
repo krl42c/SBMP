@@ -25,7 +25,7 @@ void init_screen() {
 	cbreak();
 	noecho();
 	move(0,0);
-	addstr("SIMPLE BORING MP3 PLAYER\n\nKEYBINDINGS: \nSPACE: Pause/Resume\nN: NEXT SONG\nQ: QUIT\n\nSONG LIST:\n\n");
+	addstr("SIMPLE BORING MP3 PLAYER\n\nKEYBINDINGS: \nSPACE: Pause/Resume\nN: NEXT SONG\nQ: QUIT\nR: Randomize songs\nSONG LIST:\n\n");
 
 	for(auto &i : files) {
 		addstr(i.c_str());
@@ -60,12 +60,11 @@ void play_loop(std::string file_name) {
 	
 	music = Mix_LoadMUS(file_name.c_str());
 
-	std::future<void> music_finished(std::async([&]() {while(Mix_PlayingMusic() == 1 && playing) { };  playing = false; } ));
+	std::future<void> music_finished(std::async([&]() { while(Mix_PlayingMusic() && playing) { };  playing = false; } ));
 	Mix_PlayMusic(music,1); 
 
 	while(playing) {
 		int ch = getch();	
-
 		switch(ch) {
 			case 'q':
 				playing = false;
@@ -84,6 +83,9 @@ void play_loop(std::string file_name) {
 			case 'n':
 				playing = false;
 				break; 
+			case 'r':
+				randomize_files();
+				break;
 		}
 	}
 }
