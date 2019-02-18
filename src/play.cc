@@ -60,10 +60,11 @@ void play_loop(std::string file_name) {
 	
 	music = Mix_LoadMUS(file_name.c_str());
 
+	std::future<void> music_finished(std::async([&]() {while(Mix_PlayingMusic() == 1 && playing) { };  playing = false; } ));
 	Mix_PlayMusic(music,1); 
-	while(playing ) {
-		int ch = getch();
-		std::future<void> music_finished(std::async([&]() {while(Mix_PlayingMusic() == 1 && playing) { };  playing = false; } ));
+
+	while(playing) {
+		int ch = getch();	
 
 		switch(ch) {
 			case 'q':
@@ -79,13 +80,6 @@ void play_loop(std::string file_name) {
 					paused = false;
 				}
 				break;	
-
-			case KEY_UP:
-				playing = false;
-				break;
-
-			case KEY_DOWN:
-				break;
 
 			case 'n':
 				playing = false;
