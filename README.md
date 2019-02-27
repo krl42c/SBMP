@@ -1,5 +1,4 @@
-# SBMP
-Simple Boring Music Player.
+# SBMP - Playing music with SDL2 and ncurses.
 
 A simple terminal mp3 player.
 

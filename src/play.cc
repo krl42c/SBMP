@@ -7,15 +7,14 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
-#include <future>
 
 
 bool end_player = false;
 std::vector<std::string> files;
 
 void init_audio() {
-	Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,4096); 
-	Mix_Init(MIX_INIT_MP3); 
+	Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,4096);
+	Mix_Init(MIX_INIT_MP3);
 }
 
 void init_screen() {
@@ -27,7 +26,7 @@ void init_screen() {
 
 	for(auto &i : files) {
 		addstr(i.c_str());
-		addch('\n'); 
+		addch('\n');
 	}
 }
 
@@ -55,14 +54,14 @@ void randomize_files() {
 void play_loop(std::string file_name) {
 	bool paused = false;
 	bool playing = true;
-	
+
 	Mix_Music *music;
 	music = Mix_LoadMUS(file_name.c_str());
 
-	Mix_PlayMusic(music,1); 
+	Mix_PlayMusic(music,1);
 
 	while(playing) {
-		int ch = getch();	
+		int ch = getch();
 		switch(ch) {
 			case 'q':
 				playing = false;
@@ -73,14 +72,14 @@ void play_loop(std::string file_name) {
 					Mix_PauseMusic();
 					paused = true;
 				} else {
-					Mix_ResumeMusic(); 
+					Mix_ResumeMusic();
 					paused = false;
 				}
-				break;	
+				break;
 
 			case 'n':
 				playing = false;
-				break; 
+				break;
 			case 'r':
 				randomize_files();
 				break;
@@ -89,24 +88,24 @@ void play_loop(std::string file_name) {
 }
 
 void print_help() {
-	std::cout << "SBMP \nsbmp [music_directory] \n"; 
+	std::cout << "SBMP \nsbmp [music_directory] \n";
 }
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
 	if(argc == 1) {
-		print_help(); 
-		return -1; 
+		print_help();
+		return -1;
 	}
 
-	std::string path(argv[1]); 
+	std::string path(argv[1]);
 	file_list(path);
 	init_audio();
 	init_screen();
 	for(auto &i : files) {
 		if(end_player)
 			break;
-		play_loop(i); 
+		play_loop(i);
 	}
        	end();
 	return 0;
