@@ -2,9 +2,9 @@ OBJS = src/play.cc
 
 CC = g++
 
-COMPILER_FLAGS = -Wall -Wextra -Wpedantic -std=c++17
+COMPILER_FLAGS = -Wall -Wextra -Wpedantic -std=c++17 -O2
 
-LINKER_FLAGS = -lSDL2 -lSDL2_mixer -lncurses -lpthread -lstdc++fs
+LINKER_FLAGS = -lSDL2 -lSDL2_mixer -lncurses -lpthread -lstdc++fs 
 
 OBJ_NAME = sbmp
 

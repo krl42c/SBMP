@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+#include <SDL2/SDL.
 #include <SDL2/SDL_mixer.h>
 #include <ncurses.h>
 #include <vector>
@@ -25,10 +25,14 @@ void init_screen() {
 	move(0,0);
 	addstr("SIMPLE BORING MP3 PLAYER\n\nKEYBINDINGS: \nSPACE: Pause/Resume\nN: NEXT SONG\nQ: QUIT\nR: Randomize songs\nSONG LIST:\n\n");
 
-	for(auto &i : files) {
-		addstr(i.c_str());
-		addch('\n'); 
-	}
+
+
+
+
+
+
+
+
 }
 
 void end() {
