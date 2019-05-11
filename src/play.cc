@@ -87,14 +87,10 @@ void play_loop(std::string file_name) {
 	}
 }
 
-void print_help() {
-	std::cout << "SBMP \nsbmp [music_directory] \n";
-}
-
 int main(int argc, char* argv[])
 {
 	if(argc == 1) {
-		print_help();
+		std::cout << "SBMP \n sbmp [music_directory] \n";
 		return -1;
 	}
 
